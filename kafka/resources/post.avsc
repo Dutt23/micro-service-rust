@@ -1,0 +1,118 @@
+{
+  "doc": "Value schema for the job message topic which is used for status, heartbeat, and other custom messages",
+  "fields": [
+    {
+      "doc": "Identifies the event. Producers MUST ensure that source + id is unique for each distinct event.",
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "doc": "Identifies the context in which an event happened.",
+      "name": "source",
+      "type": "string"
+    },
+    {
+      "doc": "Contains a value describing the type of event related to the originating occurrence.",
+      "name": "type",
+      "type": "string"
+    },
+    {
+      "doc": "Timestamp of when the occurrence happened in ISO 8601 format",
+      "name": "time",
+      "type": "string"
+    },
+    {
+      "doc": "Uniquely identifies the job. Can be a UUID.",
+      "name": "jobId",
+      "type": "string"
+    },
+    {
+      "doc": "Identifies the worker pool that the job is assigned to. Can be a UUID.",
+      "name": "workerPoolId",
+      "type": "string"
+    },
+    {
+      "doc": "Identifies the ID of the worker that the job is assigned to. Can be a UUID.",
+      "name": "workerId",
+      "type": "string"
+    },
+    {
+      "doc": "Can be one of StatusMessage, HeartbeatMessage, or CustomMessage",
+      "name": "jobMessage",
+      "type": [
+        {
+          "fields": [
+            {
+              "doc": "Status code",
+              "name": "status",
+              "type": "string"
+            },
+            {
+              "doc": "Status detail",
+              "name": "statusDetail",
+              "type": "string"
+            }
+          ],
+          "name": "StatusMessage",
+          "type": "record"
+        },
+        {
+          "fields": [
+            {
+              "default": "",
+              "doc": "Optional, custom heartbeat message details",
+              "name": "details",
+              "type": "string"
+            }
+          ],
+          "name": "HeartbeatMessage",
+          "type": "record"
+        },
+        {
+          "fields": [
+            {
+              "name": "messages",
+              "type": {
+                "items": {
+                  "fields": [
+                    {
+                      "doc": "Message code",
+                      "name": "code",
+                      "type": "string"
+                    },
+                    {
+                      "doc": "Generic metadata object",
+                      "name": "meta",
+                      "type": [
+                        {
+                          "fields": [
+                            {
+                              "default": "",
+                              "doc": "Optional, custom meta information",
+                              "name": "details",
+                              "type": "string"
+                            }
+                          ],
+                          "name": "meta",
+                          "type": "record"
+                        }
+                      ]
+                    }
+                  ],
+                  "name": "message",
+                  "type": "record"
+                },
+                "type": "array"
+              }
+            }
+          ],
+          "name": "CustomMessage",
+          "type": "record"
+        }
+      ]
+    }
+  ],
+  "name": "job_message_value",
+  "namespace": "com.alteryx.jobs",
+  "type": "record"
+}

@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-rdkafka = "0.32.2"
+rdkafka = { version = "0.36.2", features = ["ssl", "sasl"]}
 serde = {workspace = true}
 testcontainers = { workspace = true }
 tokio = {workspace = true}
@@ -14,3 +14,5 @@ tracing = {workspace = true}
 opentelemetry = {workspace = true}
 apache-avro = {workspace = true}
 schema_registry_converter = {workspace = true}
+derive_builder = {workspace = true}
+reqwest = "0.11.27"
