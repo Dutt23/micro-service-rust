@@ -1,6 +1,6 @@
 use std::{env, ops::Sub, sync::Arc};
 
-use crate::utils;
+use crate::{commons::create_schema_registry_settings, utils};
 use apache_avro::AvroSchema;
 use dotenv::dotenv;
 use opentelemetry::{
@@ -48,15 +48,8 @@ impl KafkaProducer {
             .set("security.protocol", "SASL_SSL")
             .create()
             .expect("Unable to create producer");
-        let schema_api_key =
-            env::var("SCHEMA_API_KEY").expect("schema key key not found in variables");
-        let schema_api_password =
-            env::var("SCHEMA_API_SECRET").expect("schema password key not found in variables");
-        let sr_settings = SrSettings::new_builder(schema_registry_url)
-            .set_basic_authorization(&schema_api_key, Some(&schema_api_password))
-            // .build_with(builder)
-            .build()
-            .expect("msg");
+
+        let sr_settings = create_schema_registry_settings(schema_registry_url);
         // let sr_settings = SrSettings::new(schema_registry_url);
         let avro_encoder = EasyAvroEncoder::new(sr_settings);
         // dbg!(&avro_encoder);
