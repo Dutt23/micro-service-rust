@@ -1,5 +1,5 @@
 [workspace]
-members = ["database","kafka"]
+members = [ "common","database","kafka"]
 
 [workspace.dependencies]
 tokio = { version = "1.28.2", features = ["full"] }
