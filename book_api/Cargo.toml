@@ -1,0 +1,26 @@
+[package]
+name = "book_api"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+migration = { path = "migration" }
+database = { path = "../database" }
+tokio = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }
+serde = { workspace = true }
+sea-orm = { workspace = true }
+derive_builder = { workspace = true }
+thiserror = { workspace = true }
+testcontainers = { workspace = true }
+kafka = {path = "../kafka"}
+common = {path = "../common"}
+axum = {workspace = true}
+serde_json = {workspace = true}
+opentelemetry = {workspace = true}
+axum-tracing-opentelemetry = {workspace = true}
+opentelemetry-zipkin = {workspace = true}
+tracing-opentelemetry = {workspace = true}
+schema_registry_converter = {workspace = true}
+apache-avro = {workspace = true}
