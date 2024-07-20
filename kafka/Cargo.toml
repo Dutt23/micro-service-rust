@@ -16,3 +16,4 @@ apache-avro = {workspace = true}
 schema_registry_converter = {workspace = true}
 derive_builder = {workspace = true}
 reqwest = "0.11.27"
+dotenv = {workspace = true}
