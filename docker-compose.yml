@@ -2,7 +2,7 @@ version: "3.1"
 
 services:
         db:
-                container_name: rust-db
+                container_name: rust-superapp-db
                 image: postgres
                 environment:
                         POSTGRES_USER: postgres
