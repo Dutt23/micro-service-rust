@@ -25,6 +25,7 @@ use schema_registry_converter::{
 use serde::Serialize;
 use std::time::Duration;
 use tracing::{error, info};
+#[derive(Clone)]
 pub struct KafkaProducer {
     pub producer: FutureProducer,
     avro_encoder: Arc<EasyAvroEncoder>,
