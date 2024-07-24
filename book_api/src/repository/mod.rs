@@ -1,4 +1,5 @@
 use crate::entity::book::{ActiveModel as BookActiveModel, Model as BookModel};
+use migration::sea_orm::{ConnectOptions, Database};
 use migration::{Migrator, MigratorTrait};
 use sea_orm::ActiveValue::Set;
 use sea_orm::{ActiveModelTrait, DatabaseConnection, DbErr};
