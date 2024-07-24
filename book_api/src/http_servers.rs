@@ -56,7 +56,7 @@ struct CreateBookResponse {
 
 async fn create_book(
     Extension(service): Extension<Service>,
-    Json(create_book_req): Json<CreateBookResponse>,
+    Json(create_book_req): Json<CreateBookRequest>,
 ) -> impl IntoResponse {
     let created_book_res = service
         .create_book(create_book_req.title, create_book_req.isbn)
