@@ -20,7 +20,7 @@ pub async fn start_http_server(service: Service) {
         .nest("/api", api_router)
         .layer(opentelemetry_tracing_layer())
         .layer(Extension(service));
-    let addr = SocketAddr::from(([127, 0, 0, 1], 8080));
+    let addr = SocketAddr::from(([127, 0, 0, 1], 8090));
     axum::Server::bind(&addr)
         .serve(app.into_make_service())
         .await

@@ -34,19 +34,19 @@ pub struct KafkaProducer {
 impl KafkaProducer {
     pub fn new(bootstrap_servers: String, schema_registry_url: String) -> Self {
         dotenv().ok();
-        let api_key = env::var("KAFKA_API_KEY").expect("kafka key not found in variables");
-        let api_password =
-            env::var("KAFKA_API_SECRET").expect("kafka secrets not found in variables");
+        // let api_key = env::var("KAFKA_API_KEY").expect("kafka key not found in variables");
+        // let api_password =
+        //     env::var("KAFKA_API_SECRET").expect("kafka secrets not found in variables");
 
         let producer: FutureProducer = ClientConfig::new()
             .set("bootstrap.servers", bootstrap_servers)
-            .set("produce.offset.report", "true")
+            // .set("produce.offset.report", "true")
             .set("message.timeout.ms", "45000")
             .set("queue.buffering.max.messages", "10")
-            .set("sasl.username", api_key)
-            .set("sasl.password", api_password)
-            .set("sasl.mechanisms", "PLAIN")
-            .set("security.protocol", "SASL_SSL")
+            // .set("sasl.username", api_key)
+            // .set("sasl.password", api_password)
+            // .set("sasl.mechanisms", "PLAIN")
+            // .set("security.protocol", "SASL_SSL")
             .create()
             .expect("Unable to create producer");
 

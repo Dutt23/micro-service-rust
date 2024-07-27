@@ -401,6 +401,21 @@ dependencies = [
 ]
 
 [[package]]
+name = "book_analytics"
+version = "0.1.0"
+dependencies = [
+ "axum-tracing-opentelemetry",
+ "common",
+ "kafka",
+ "opentelemetry",
+ "opentelemetry-zipkin",
+ "tokio",
+ "tracing",
+ "tracing-opentelemetry",
+ "tracing-subscriber",
+]
+
+[[package]]
 name = "book_api"
 version = "0.1.0"
 dependencies = [

@@ -33,15 +33,18 @@ impl KafkaConsumer {
         schema_registry_url: String,
     ) -> Self {
         dotenv().ok();
-        let api_key = env::var("KAFKA_API_KEY").expect("kafka key not found in variables");
-        let api_password =
-            env::var("KAFKA_API_SECRET").expect("kafka secrets not found in variables");
+        // let api_key = env::var("KAFKA_API_KEY").expect("kafka key not found in variables");
+        // let api_password =
+        //     env::var("KAFKA_API_SECRET").expect("kafka secrets not found in variables");
         let consumer: StreamConsumer = ClientConfig::new()
             .set("group.id", group_id)
             .set("bootstrap.servers", bootstrap_servers)
             .set("session.timeout.ms", "6000")
             .set("enable.auto.commit", "false")
             .set("auto.offset.reset", "earliest")
+            .set("allow.auto.create.topics", "true")
+            // .set("sasl.username", api_key)
+            // .set("sasl.password", api_password)
             .set_log_level(RDKafkaLogLevel::Debug)
             .create()
             .expect("Consumer creation error");
